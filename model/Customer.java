@@ -10,6 +10,9 @@ public class Customer {
     private String username;
     private String password;
 
+    public Customer(){
+        
+    }
     public Customer(String custFname,String custLname ,char gender,String phoneNo,String address,String username,String password){
         this.custFname = custFname;
         this.custLname = custLname;

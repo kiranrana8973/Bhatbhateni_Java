@@ -40,13 +40,17 @@ public class RegisterCustomer{
 
       
         if(password.equals(confirmPassword)){
-            Customer customer = new Customer(fname,lname,gender,phone,address,username,password);
+            Customer customer = 
+            new Customer(fname,lname,gender,phone,address,username,password);
+
             customerController = new CustomerController();
             int insert = customerController.registerCustomer(customer);
+
             if(insert>0)
                 JOptionPane.showMessageDialog(null,"Successfully registered");
             else
                 JOptionPane.showMessageDialog(null,"Failed to register");
+
         }else{
             JOptionPane.showMessageDialog(null,"Password and Confirm Password does not match");
             jpPassword.requestFocus();
@@ -57,7 +61,7 @@ public class RegisterCustomer{
         myFrame = new JFrame("Customer Registration");
         myFrame.setSize(500,500); 
         myFrame.setLayout(null);
-        myFrame.getContentPane().setBackground(Color.BLUE);
+      //  myFrame.getContentPane().setBackground(Color.lightGray);
 
         lblFname = new JLabel("First Name");
         lblLname = new JLabel("Last Name");

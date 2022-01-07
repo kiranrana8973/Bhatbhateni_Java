@@ -10,61 +10,53 @@ public class DbConnection {
     int val;
 
     public DbConnection() {
-        //register the driver class
+        // register the driver class
         try {
-            String username= "root";
-            String password ="kiran123";
+            String username = "root";
+            String password = null;
             Class.forName("com.mysql.cj.jdbc.Driver");
             // create the connection object
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Bhatbhateni?characterEncoding=utf8&useSSL=false&autoReconnect=true", username,password);
+            con = DriverManager.getConnection(
+                    // "jdbc:mysql://localhost:3306/bhatbhateni?characterEncoding=utf8&useSSL=false&autoReconnect=true",
+                    "jdbc:mysql://localhost:3306/bhatbhateni",username, password);
+
             if (con != null) {
                 System.out.println("Connected to BhatBhateni Database");
-            }else{
+            } else {
                 System.out.println("Error connecting Database");
             }
 
-            //creating statement object
+            // creating statement object
             st = con.createStatement();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // Prepared Statement
-    public int insertData(PreparedStatement ps) {
-        try {
-            val = ps.executeUpdate();
-             // con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return val;
-    }
+    // Used for insert, update, delete
+    public int maniulate(String query) {
 
-    // Simple query
-    public int insert(String query) {
-      
         try {
             val = st.executeUpdate(query);
-             // con.close();
+            con.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         return val;
     }
-
-    public ResultSet select(String query) {
+    // Used for select
+    public ResultSet retrieve(String query) {
         try {
             rows = st.executeQuery(query);
-            // con.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return rows;
     }
-
     // public static void main(String[] args) {
     //     new DbConnection();
     // }
 }
+
+
