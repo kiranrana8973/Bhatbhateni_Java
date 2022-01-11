@@ -1,10 +1,7 @@
 package view.customer;
-
-import java.awt.Color;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
 import controller.CustomerController;
 import model.Customer;
 

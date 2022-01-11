@@ -34,8 +34,8 @@ public class LoginScreen implements ActionListener {
     frame.add(lblUsername);
     frame.add(lblPassword);
 
-    txtUsername = new JTextField();
-    txtPassword = new JPasswordField();
+    txtUsername = new JTextField("kiran");
+    txtPassword = new JPasswordField("kiran");
 
     frame.add(txtUsername);
     frame.add(txtPassword);
@@ -69,7 +69,8 @@ public class LoginScreen implements ActionListener {
       new RegisterCustomer();
     } else {
       CustomerController controller = new CustomerController();
-      Customer customer = controller.loginCustomer(txtUsername.getText(), txtPassword.getText());
+      Customer customer = controller.loginCustomer(txtUsername.getText(),
+       txtPassword.getText());
       if (customer != null) {
         new Dashboard(customer);
       }else{

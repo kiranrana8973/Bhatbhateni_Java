@@ -13,7 +13,7 @@ public class DbConnection {
         // register the driver class
         try {
             String username = "root";
-            String password = null;
+            String password = "kiran123";
             Class.forName("com.mysql.cj.jdbc.Driver");
             // create the connection object
             con = DriverManager.getConnection(
@@ -49,14 +49,12 @@ public class DbConnection {
     public ResultSet retrieve(String query) {
         try {
             rows = st.executeQuery(query);
+           
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return rows;
     }
-    // public static void main(String[] args) {
-    //     new DbConnection();
-    // }
 }
 
 
