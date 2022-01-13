@@ -33,7 +33,7 @@ public class DbConnection {
     }
 
     // method to insert data using prepared statement
-    public int manipulatePreparedSt(PreparedStatement st) {
+    public int maniulate(PreparedStatement st) {
         try {
             val = st.executeUpdate();
         } catch (SQLException e) {

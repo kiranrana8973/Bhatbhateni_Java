@@ -1,6 +1,5 @@
 package controller;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +28,7 @@ public class CustomerController {
             st.setString(6, customer.getUsername());
             st.setString(7, customer.getPassword());
 
-            return db.manipulatePreparedSt(st);
+            return db.maniulate(st);
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
