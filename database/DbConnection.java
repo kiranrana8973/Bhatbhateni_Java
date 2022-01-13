@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DbConnection {
 
-    Connection con;
+    public Connection con;
     Statement st;
     ResultSet rows;
     int val;
@@ -13,19 +13,18 @@ public class DbConnection {
         // register the driver class
         try {
             String username = "root";
-            String password = "kiran123";
+            String password = null;
             Class.forName("com.mysql.cj.jdbc.Driver");
             // create the connection object
             con = DriverManager.getConnection(
                     // "jdbc:mysql://localhost:3306/bhatbhateni?characterEncoding=utf8&useSSL=false&autoReconnect=true",
-                    "jdbc:mysql://localhost:3306/bhatbhateni",username, password);
+                    "jdbc:mysql://localhost:3306/bhatbhateni", username, password);
 
             if (con != null) {
                 System.out.println("Connected to BhatBhateni Database");
             } else {
                 System.out.println("Error connecting Database");
             }
-
             // creating statement object
             st = con.createStatement();
         } catch (Exception e) {
@@ -33,9 +32,18 @@ public class DbConnection {
         }
     }
 
+    // method to insert data using prepared statement
+    public int manipulatePreparedSt(PreparedStatement st) {
+        try {
+            val = st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return val;
+    }
+
     // Used for insert, update, delete
     public int maniulate(String query) {
-
         try {
             val = st.executeUpdate(query);
             con.close();
@@ -45,16 +53,20 @@ public class DbConnection {
 
         return val;
     }
+
+
     // Used for select
     public ResultSet retrieve(String query) {
         try {
             rows = st.executeQuery(query);
-           
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return rows;
     }
+
+    public static void main(String[] args) {
+        new DbConnection();
+    }
 }
-
-

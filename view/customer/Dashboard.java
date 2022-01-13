@@ -47,7 +47,7 @@ public class Dashboard extends JFrame implements ActionListener {
         add(lblUsername, BorderLayout.NORTH);
         setVisible(true);
     }
-
+    
     private void fillArray() {
         CustomerController controller = new CustomerController();
         List<Customer> lstCustomer = controller.getAllCustomers();

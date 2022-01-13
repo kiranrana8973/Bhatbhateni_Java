@@ -1,6 +1,9 @@
 package controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +12,34 @@ import model.Customer;
 
 public class CustomerController {
 
-    DbConnection db;
+    DbConnection db = new DbConnection();
 
+    public int registerCustomerPrepaedStatement(Customer customer) {
+        try {
+            String query = "insert into customer(custFname,custLname,gender,phoneNo," +
+                    "address,username,password) values(?,?,?,?,?,?,?)";
+
+            PreparedStatement st = db.con.prepareStatement(query);
+
+            st.setString(1, customer.getCustFname());
+            st.setString(2, customer.getCustLname());
+            st.setString(3, String.valueOf(customer.getGender()));
+            st.setString(4, customer.getPhoneNo());
+            st.setString(5, customer.getAddress());
+            st.setString(6, customer.getUsername());
+            st.setString(7, customer.getPassword());
+
+            return db.manipulatePreparedSt(st);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
     // Register customer;
     public int registerCustomer(Customer customer) {
         String query;
+
         query = "insert into customer(custFname,custLname,gender,phoneNo," +
                 "address,username,password) values('" +
                 customer.getCustFname() + "','" +
@@ -24,7 +50,6 @@ public class CustomerController {
                 customer.getUsername() + "','" +
                 customer.getPassword() + "');";
 
-        db = new DbConnection();
         return db.maniulate(query);
     }
 
@@ -33,7 +58,7 @@ public class CustomerController {
         String query;
         query = "select * from customer where username = '" + username +
                 "' and password = '" + password + "';";
-        db = new DbConnection();
+
         ResultSet rs = db.retrieve(query);
         Customer customer = null;
 
@@ -81,5 +106,3 @@ public class CustomerController {
         return lstCustomers;
     }
 }
-
-
