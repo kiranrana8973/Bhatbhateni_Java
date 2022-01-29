@@ -15,6 +15,8 @@ public class Dashboard extends JFrame implements ActionListener {
 
     Object[] columns = { "First name", "Last Name", "Phone", "Address" };
     String data[][];
+
+
     JTable table;
     DefaultTableModel model;
 
@@ -51,7 +53,10 @@ public class Dashboard extends JFrame implements ActionListener {
     private void fillArray() {
         CustomerController controller = new CustomerController();
         List<Customer> lstCustomer = controller.getAllCustomers();
+        
         data = new String[lstCustomer.size()][4];
+
+        // Convert list to array
         for (int i = 0; i < lstCustomer.size(); i++) {
             data[i][0] = lstCustomer.get(i).getCustFname();
             data[i][1] = lstCustomer.get(i).getCustLname();

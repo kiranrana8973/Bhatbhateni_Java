@@ -88,6 +88,7 @@ public class CustomerController {
         try {
             while (rs.next()) {
                 Customer customer = new Customer();
+                
                 customer.setCustId(rs.getInt("custId"));
                 customer.setCustFname(rs.getString("custFname"));
                 customer.setCustLname(rs.getString("custLname"));
